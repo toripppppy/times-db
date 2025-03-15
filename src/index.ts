@@ -1,5 +1,5 @@
 import express from "express";
-import download from "./src/controllers/download.js";
+import download from "./controllers/download.js";
 
 const app = express();
 
