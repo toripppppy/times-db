@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "ESNext", // ESモジュールを使用
+    "moduleResolution": "node", // Node.js のモジュール解決方法
+    "target": "ESNext", // 出力するJavaScriptのターゲット
+    "esModuleInterop": true, // ESモジュールとCommonJSの互換性
+    "strict": true, // 厳格モード
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}
