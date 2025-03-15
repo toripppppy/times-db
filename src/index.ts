@@ -1,12 +1,12 @@
 import express from "express";
-import download from "./controllers/download.js";
+import downloadController from "@/controllers/download";
 
 const app = express();
 
 /**
  * GET /download?filename=***
  */
-app.get("/download", download);
+app.use("/download", downloadController);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

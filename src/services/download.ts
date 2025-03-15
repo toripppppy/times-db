@@ -1,6 +1,6 @@
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
-import s3Client from "./s3-client";
+import s3Client from "@/services/s3Client";
 
 async function download(filename: string): Promise<Readable> {
   const params = {
