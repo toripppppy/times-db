@@ -5,10 +5,10 @@ const router: Router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
   const prisma = new PrismaClient();
-  const allAudios = await prisma.audio.findMany();
-  console.log(allAudios);
+  const mediaFiles = await prisma.mediaItem.findMany();
+  console.log(mediaFiles);
 
-  res.send(allAudios.toString());
+  res.send(mediaFiles.toString());
 });
 
 export default router;

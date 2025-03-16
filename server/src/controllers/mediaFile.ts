@@ -3,14 +3,17 @@ import express, { Request, Response, Router } from "express";
 
 const router: Router = express.Router();
 
-router.get("/", async (req: Request, res: Response) => {
-  const { filename } = req.query;
+/**
+ * GET /download?key=***
+ */
+router.get("/download", async (req: Request, res: Response) => {
+  const { key } = req.query;
 
-  if (typeof filename === "string") {
-    const fileStream = await downloadService(filename);
+  if (typeof key === "string") {
+    const fileStream = await downloadService(key);
 
     if (fileStream) {
-      res.attachment(filename);
+      res.attachment(key);
 
       fileStream.pipe(res);
 

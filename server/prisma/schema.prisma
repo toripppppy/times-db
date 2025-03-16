@@ -7,22 +7,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Audio {
+model MediaFile {
   id    Int    @id @default(autoincrement())
   // ファイル情報
   filename  String
-  filetype fileType
+  mimeType String
 
-  // S3に保存しているUUID
-  uuid  String
+  // S3からの参照に使うキー
+  s3Key String
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("audios")
+  @@map("media_files")
 }
 
-enum fileType {
-  WAV
-  MP3
+model MediaItem {
+  id    Int    @id @default(autoincrement())
+  mediaFileId Int
+  comment String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("media_items")
 }
