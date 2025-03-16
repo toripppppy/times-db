@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsx -r tsconfig-paths/register src/index.ts"
+    "dev": "npx tsx watch -r tsconfig-paths/register src/index.ts"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed.ts"
