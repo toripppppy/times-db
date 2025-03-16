@@ -7,7 +7,7 @@ class MediaItemSeeder {
     const test1 = await prisma.mediaItem.create({
       data: {
         mediaFileId: 1,
-        comment: "test1",
+        comment: "機械仕掛けの再革命.mp3です",
       },
     });
     const test2 = await prisma.mediaItem.create({

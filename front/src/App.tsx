@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Card,
@@ -7,33 +7,29 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-
-const mediaData = [
-  {
-    id: 1,
-    mediaFile: {
-      filename: "機械仕掛けの再革命.mp3",
-      mimeType: "audio/mpeg",
-      s3Key: "機械仕掛けの再革命.mp3",
-    },
-    comment: "機械仕掛けの再革命",
-    createdAt: "2025-03-14",
-  },
-  {
-    id: 2,
-    mediaFile: {
-      filename: "test2.wav",
-      mimeType: "audio/wav",
-      s3Key: "bbbbb.wav",
-    },
-    comment: "test2",
-    createdAt: "2025-03-14",
-  },
-];
+import MediaItem from "./interfaces/mediaItem";
 
 const App: React.FC = () => {
   const [loadedMedia, setLoadedMedia] = useState<{ [key: number]: string }>({});
   const [loading, setLoading] = useState<{ [key: number]: boolean }>({});
+
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:8000/media-item");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await response.json();
+
+      // 型安全が確保されたので、mediaItemsを更新
+      setMediaItems(data);
+    }
+    fetchData();
+  }, []);
 
   const handleLoadMedia = async (id: number, s3Key: string) => {
     if (loadedMedia[id]) return; // 既にロード済みなら何もしない
@@ -57,7 +53,7 @@ const App: React.FC = () => {
 
   return (
     <Container maxWidth="sm" sx={{ py: 4 }}>
-      {mediaData.map((media) => (
+      {mediaItems?.map((media) => (
         <Card
           key={media.id}
           sx={{

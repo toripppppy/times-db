@@ -8,9 +8,10 @@ generator client {
 }
 
 model MediaFile {
-  id    Int    @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   // ファイル情報
-  filename  String
+  filename String
   mimeType String
 
   // S3からの参照に使うキー
@@ -19,16 +20,21 @@ model MediaFile {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  // リレーション
+  MediaItem MediaItem[]
+
   @@map("media_files")
 }
 
 model MediaItem {
-  id    Int    @id @default(autoincrement())
-  mediaFileId Int
+  id      Int    @id @default(autoincrement())
   comment String
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  mediaFileId Int
+  mediaFile   MediaFile @relation(fields: [mediaFileId], references: [id])
 
   @@map("media_items")
 }
