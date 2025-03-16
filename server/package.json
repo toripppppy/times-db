@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsx -r tsconfig-paths/register src/index.ts"
+    "dev": "npx tsx watch -r tsconfig-paths/register src/index.ts"
+  },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
   },
   "author": "",
   "license": "ISC",
@@ -11,9 +14,12 @@
   "type": "module",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.758.0",
+    "@prisma/client": "^6.5.0",
     "@types/express": "^5.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "prisma": "^6.5.0",
+    "sqlite3": "^5.1.7",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2"
   },
