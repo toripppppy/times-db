@@ -1,15 +1,11 @@
 import express from "express";
-import downloadController from "@/controllers/download";
-import AudioController from "@/controllers/audio";
+import mediaFileController from "@/controllers/mediaFile";
+import MediaItemController from "@/controllers/mediaItem";
 
 const app = express();
 
-/**
- * GET /download?filename=***
- */
-app.use("/download", downloadController);
-
-app.use("/audio", AudioController);
+app.use("/media-file", mediaFileController);
+app.use("/media-item", MediaItemController);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

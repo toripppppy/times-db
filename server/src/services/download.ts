@@ -2,10 +2,10 @@ import { GetObjectCommand } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
 import s3Client from "@/services/s3Client";
 
-async function download(filename: string): Promise<Readable> {
+async function download(key: string): Promise<Readable> {
   const params = {
     Bucket: process.env.AWS_S3_BUCKET,
-    Key: filename,
+    Key: key,
   };
 
   // S3からファイルをダウンロードする
